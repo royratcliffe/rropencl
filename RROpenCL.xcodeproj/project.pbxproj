@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		78C97D61105EAB000012DEC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		78C97D63105EAB1B0012DEC1 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C97D62105EAB1B0012DEC1 /* OpenCL.framework */; };
-		78C97D69105EAB410012DEC1 /* RRCLDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97D67105EAB410012DEC1 /* RRCLDevice.h */; };
+		78C97D69105EAB410012DEC1 /* RRCLDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97D67105EAB410012DEC1 /* RRCLDevice.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		78C97D6A105EAB410012DEC1 /* RRCLDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C97D68105EAB410012DEC1 /* RRCLDevice.m */; };
+		78C97DA2105EB8CE0012DEC1 /* RROpenCL.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97DA1105EB8CE0012DEC1 /* RROpenCL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78C97DAE105EB9760012DEC1 /* RRCLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97DAC105EB9760012DEC1 /* RRCLContext.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		78C97DAF105EB9760012DEC1 /* RRCLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C97DAD105EB9760012DEC1 /* RRCLContext.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 		78C97D62105EAB1B0012DEC1 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
 		78C97D67105EAB410012DEC1 /* RRCLDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLDevice.h; sourceTree = "<group>"; };
 		78C97D68105EAB410012DEC1 /* RRCLDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLDevice.m; sourceTree = "<group>"; };
+		78C97DA1105EB8CE0012DEC1 /* RROpenCL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RROpenCL.h; sourceTree = "<group>"; };
+		78C97DAC105EB9760012DEC1 /* RRCLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLContext.h; sourceTree = "<group>"; };
+		78C97DAD105EB9760012DEC1 /* RRCLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLContext.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* RROpenCL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RROpenCL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -84,6 +90,8 @@
 			children = (
 				78C97D67105EAB410012DEC1 /* RRCLDevice.h */,
 				78C97D68105EAB410012DEC1 /* RRCLDevice.m */,
+				78C97DAC105EB9760012DEC1 /* RRCLContext.h */,
+				78C97DAD105EB9760012DEC1 /* RRCLContext.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF5E0370ADEE00C91783 /* RROpenCL_Prefix.pch */,
+				78C97DA1105EB8CE0012DEC1 /* RROpenCL.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -123,6 +132,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C97D69105EAB410012DEC1 /* RRCLDevice.h in Headers */,
+				78C97DA2105EB8CE0012DEC1 /* RROpenCL.h in Headers */,
+				78C97DAE105EB9760012DEC1 /* RRCLContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C97D6A105EAB410012DEC1 /* RRCLDevice.m in Sources */,
+				78C97DAF105EB9760012DEC1 /* RRCLContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
