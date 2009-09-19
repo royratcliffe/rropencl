@@ -14,11 +14,11 @@
 		78C97DA2105EB8CE0012DEC1 /* RROpenCL.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97DA1105EB8CE0012DEC1 /* RROpenCL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C97DAE105EB9760012DEC1 /* RRCLContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97DAC105EB9760012DEC1 /* RRCLContext.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		78C97DAF105EB9760012DEC1 /* RRCLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C97DAD105EB9760012DEC1 /* RRCLContext.m */; };
-		78F3675E1064C46C004B57FB /* RRCLCommandQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F367581064C46C004B57FB /* RRCLCommandQueue.h */; };
+		78F3675E1064C46C004B57FB /* RRCLCommandQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F367581064C46C004B57FB /* RRCLCommandQueue.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		78F3675F1064C46C004B57FB /* RRCLCommandQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F367591064C46C004B57FB /* RRCLCommandQueue.m */; };
-		78F367601064C46C004B57FB /* RRCLKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F3675A1064C46C004B57FB /* RRCLKernel.h */; };
+		78F367601064C46C004B57FB /* RRCLKernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F3675A1064C46C004B57FB /* RRCLKernel.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		78F367611064C46C004B57FB /* RRCLKernel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F3675B1064C46C004B57FB /* RRCLKernel.m */; };
-		78F367621064C46C004B57FB /* RRCLProgram.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F3675C1064C46C004B57FB /* RRCLProgram.h */; };
+		78F367621064C46C004B57FB /* RRCLProgram.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F3675C1064C46C004B57FB /* RRCLProgram.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		78F367631064C46C004B57FB /* RRCLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F3675D1064C46C004B57FB /* RRCLProgram.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
