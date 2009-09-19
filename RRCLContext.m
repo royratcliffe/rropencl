@@ -24,6 +24,8 @@
 
 #import "RRCLContext.h"
 #import "RRCLDevice.h"
+#import "RRCLCommandQueue.h"
+#import "RRCLProgram.h"
 
 void RRCLContextNotify(const char *errinfo, const void *private_info, size_t cb, void *user_data);
 
@@ -40,9 +42,9 @@ void RRCLContextNotify(const char *errinfo, const void *private_info, size_t cb,
 		{
 			ids[index] = [[deviceIDs objectAtIndex:index] deviceID];
 		}
-		cl_int err;
-		context = clCreateContext(NULL, count, ids, RRCLContextNotify, self, &err);
-		if (CL_SUCCESS != err)
+		cl_int errcode;
+		context = clCreateContext(NULL, count, ids, RRCLContextNotify, self, &errcode);
+		if (CL_SUCCESS != errcode)
 		{
 			[self release];
 			self = nil;
@@ -60,6 +62,16 @@ void RRCLContextNotify(const char *errinfo, const void *private_info, size_t cb,
 {
 	clReleaseContext(context);
 	[super finalize];
+}
+
+- (RRCLCommandQueue *)commandQueueForDeviceID:(cl_device_id)aDeviceID
+{
+	return [[[RRCLCommandQueue alloc] initWithContext:context deviceID:aDeviceID] autorelease];
+}
+
+- (RRCLProgram *)programWithSource:(NSString *)source
+{
+	return [[[RRCLProgram alloc] initWithSource:source inContext:context] autorelease];
 }
 
 - (void)notifyWithErrorInfo:(NSString *)errInfo data:(NSData *)data

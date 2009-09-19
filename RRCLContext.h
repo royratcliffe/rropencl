@@ -26,11 +26,18 @@
 
 #import <OpenCL/OpenCL.h>
 
+@class RRCLCommandQueue;
+@class RRCLProgram;
+
 @interface RRCLContext : NSObject
 {
 	cl_context context;
 }
 
 - (id)initWithDeviceIDs:(NSArray *)deviceIDs;
+
+- (RRCLCommandQueue *)commandQueueForDeviceID:(cl_device_id)aDeviceID;
+
+- (RRCLProgram *)programWithSource:(NSString *)source;
 
 @end

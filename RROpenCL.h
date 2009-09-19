@@ -24,3 +24,6 @@
 
 #import <RROpenCL/RRCLDevice.h>
 #import <RROpenCL/RRCLContext.h>
+#import <RROpenCL/RRCLCommandQueue.h>
+#import <RROpenCL/RRCLProgram.h>
+#import <RROpenCL/RRCLKernel.h>
