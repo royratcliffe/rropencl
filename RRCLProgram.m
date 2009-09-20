@@ -60,7 +60,9 @@
 	clBuildProgram(program, 0, NULL, "", NULL, NULL);
 }
 
+//------------------------------------------------------------------------------
 #pragma mark                                                                Info
+//------------------------------------------------------------------------------
 
 - (cl_uint)referenceCount
 {
@@ -90,9 +92,11 @@
 	return numberOfDevices;
 }
 
+//------------------------------------------------------------------------------
 #pragma mark                                                          Build Info
+//------------------------------------------------------------------------------
 
-- (cl_build_status)statusForDevice:(cl_device_id)deviceID
+- (cl_build_status)statusForDeviceID:(cl_device_id)deviceID
 {
 	// Returns the error code if not successful, e.g. returns CL_INVALID_DEVICE
 	// if deviceID is not in the list of devices associated with the program.
@@ -108,7 +112,7 @@
 	}
 	return status;
 }
-- (NSString *)stringForBuildInfo:(cl_program_build_info)buildInfo device:(cl_device_id)deviceID
+- (NSString *)stringForBuildInfo:(cl_program_build_info)buildInfo deviceID:(cl_device_id)deviceID
 {
 	size_t size;
 	if (CL_SUCCESS != clGetProgramBuildInfo(program, deviceID, buildInfo, 0, NULL, &size))
@@ -122,13 +126,13 @@
 	}
 	return [NSString stringWithCString:info encoding:NSASCIIStringEncoding];
 }
-- (NSString *)optionsForDevice:(cl_device_id)deviceID
+- (NSString *)optionsForDeviceID:(cl_device_id)deviceID
 {
-	return [self stringForBuildInfo:CL_PROGRAM_BUILD_OPTIONS device:deviceID];
+	return [self stringForBuildInfo:CL_PROGRAM_BUILD_OPTIONS deviceID:deviceID];
 }
 - (NSString *)logForDevice:(cl_device_id)deviceID
 {
-	return [self stringForBuildInfo:CL_PROGRAM_BUILD_LOG device:deviceID];
+	return [self stringForBuildInfo:CL_PROGRAM_BUILD_LOG deviceID:deviceID];
 }
 
 - (RRCLKernel *)kernelWithName:(NSString *)kernelName

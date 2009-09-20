@@ -48,9 +48,9 @@
 
 //------------------------------------------------------------------- Build Info
 
-- (cl_build_status)statusForDevice:(cl_device_id)deviceID;
-- (NSString *)optionsForDevice:(cl_device_id)deviceID;
-- (NSString *)logForDevice:(cl_device_id)deviceID;
+- (cl_build_status)statusForDeviceID:(cl_device_id)deviceID;
+- (NSString *)optionsForDeviceID:(cl_device_id)deviceID;
+- (NSString *)logForDeviceID:(cl_device_id)deviceID;
 
 - (RRCLKernel *)kernelWithName:(NSString *)kernelName;
 
