@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7868A3B010668790004A2B89 /* RRCLBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7868A3AE10668790004A2B89 /* RRCLBuffer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7868A3B110668790004A2B89 /* RRCLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7868A3AF10668790004A2B89 /* RRCLBuffer.m */; };
 		78C97D61105EAB000012DEC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		78C97D63105EAB1B0012DEC1 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C97D62105EAB1B0012DEC1 /* OpenCL.framework */; };
 		78C97D69105EAB410012DEC1 /* RRCLDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C97D67105EAB410012DEC1 /* RRCLDevice.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -29,6 +31,8 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* RROpenCL_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RROpenCL_Prefix.pch; sourceTree = "<group>"; };
+		7868A3AE10668790004A2B89 /* RRCLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLBuffer.h; sourceTree = "<group>"; };
+		7868A3AF10668790004A2B89 /* RRCLBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLBuffer.m; sourceTree = "<group>"; };
 		78C97D62105EAB1B0012DEC1 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
 		78C97D67105EAB410012DEC1 /* RRCLDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCLDevice.h; sourceTree = "<group>"; };
 		78C97D68105EAB410012DEC1 /* RRCLDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCLDevice.m; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				78F3675B1064C46C004B57FB /* RRCLKernel.m */,
 				78F3675C1064C46C004B57FB /* RRCLProgram.h */,
 				78F3675D1064C46C004B57FB /* RRCLProgram.m */,
+				7868A3AE10668790004A2B89 /* RRCLBuffer.h */,
+				7868A3AF10668790004A2B89 /* RRCLBuffer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -155,6 +161,7 @@
 				78F3675E1064C46C004B57FB /* RRCLCommandQueue.h in Headers */,
 				78F367601064C46C004B57FB /* RRCLKernel.h in Headers */,
 				78F367621064C46C004B57FB /* RRCLProgram.h in Headers */,
+				7868A3B010668790004A2B89 /* RRCLBuffer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +226,7 @@
 				78F3675F1064C46C004B57FB /* RRCLCommandQueue.m in Sources */,
 				78F367611064C46C004B57FB /* RRCLKernel.m in Sources */,
 				78F367631064C46C004B57FB /* RRCLProgram.m in Sources */,
+				7868A3B110668790004A2B89 /* RRCLBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
