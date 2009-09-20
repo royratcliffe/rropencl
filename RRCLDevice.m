@@ -1,4 +1,4 @@
-// OpenCL RRCLDevice.m
+// RROpenCL RRCLDevice.m
 //
 // Copyright © 2009, Roy Ratcliffe, Lancaster, United Kingdom
 //

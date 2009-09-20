@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "RRCLKernel.h"
+#import "RRCLBuffer.h"
 
 @implementation RRCLKernel
 
@@ -40,6 +41,17 @@
 		}
 	}
 	return self;
+}
+
+- (cl_kernel)kernel
+{
+	return kernel;
+}
+
+- (cl_int)setArg:(cl_uint)argIndex toBuffer:(RRCLBuffer *)aBuffer
+{
+	cl_mem mem = [aBuffer mem];
+	return clSetKernelArg(kernel, argIndex, sizeof(mem), &mem);
 }
 
 - (void)dealloc

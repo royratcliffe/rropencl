@@ -26,11 +26,17 @@
 
 #import <OpenCL/OpenCL.h>
 
+@class RRCLBuffer;
+
 @interface RRCLKernel : NSObject
 {
 	cl_kernel kernel;
 }
 
 - (id)initWithKernelName:(NSString *)kernelName inProgram:(cl_program)aProgram;
+
+- (cl_kernel)kernel;
+
+- (cl_int)setArg:(cl_uint)argIndex toBuffer:(RRCLBuffer *)aBuffer;
 
 @end
