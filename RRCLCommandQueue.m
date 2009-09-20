@@ -23,6 +23,8 @@
 //------------------------------------------------------------------------------
 
 #import "RRCLCommandQueue.h"
+#import "RRCLBuffer.h"
+#import "RRCLKernel.h"
 
 @implementation RRCLCommandQueue
 
@@ -42,13 +44,67 @@
 	return self;
 }
 
-- (void)flush
+//------------------------------------------------------------------------------
+#pragma mark                                                                Info
+//------------------------------------------------------------------------------
+
+- (cl_context)context
 {
-	clFlush(commandQueue);
+	cl_context context;
+	if (CL_SUCCESS != clGetCommandQueueInfo(commandQueue, CL_QUEUE_CONTEXT, sizeof(context), &context, NULL))
+	{
+		return NULL;
+	}
+	return context;
 }
-- (void)finish
+- (cl_device_id)deviceID
 {
-	clFinish(commandQueue);
+	cl_device_id deviceID;
+	if (CL_SUCCESS != clGetCommandQueueInfo(commandQueue, CL_QUEUE_DEVICE, sizeof(deviceID), &deviceID, NULL))
+	{
+		return NULL;
+	}
+	return deviceID;
+}
+- (cl_uint)referenceCount
+{
+	cl_uint referenceCount;
+	if (CL_SUCCESS != clGetCommandQueueInfo(commandQueue, CL_QUEUE_REFERENCE_COUNT, sizeof(referenceCount), &referenceCount, NULL))
+	{
+		return 0;
+	}
+	return referenceCount;
+}
+
+- (cl_int)flush
+{
+	return clFlush(commandQueue);
+}
+- (cl_int)finish
+{
+	return clFinish(commandQueue);
+}
+
+- (NSData *)enqueueReadBuffer:(RRCLBuffer *)aBuffer blocking:(cl_bool)blocking offset:(size_t)offset length:(size_t)cb
+{
+	NSMutableData *data = [NSMutableData dataWithLength:cb];
+	if (CL_SUCCESS != clEnqueueReadBuffer(commandQueue, [aBuffer mem], blocking, offset, cb, [data mutableBytes], 0, NULL, NULL))
+	{
+		return nil;
+	}
+	return data;
+}
+- (cl_int)enqueueWriteBuffer:(RRCLBuffer *)aBuffer blocking:(cl_bool)blocking offset:(size_t)offset data:(NSData *)data
+{
+	return clEnqueueWriteBuffer(commandQueue, [aBuffer mem], blocking, offset, [data length], [data bytes], 0, NULL, NULL);
+}
+- (cl_int)enqueueNDRangeKernel:(RRCLKernel *)aKernel globalWorkSize:(size_t)globalWorkSize
+{
+	return clEnqueueNDRangeKernel(commandQueue, [aKernel kernel], 1, NULL, &globalWorkSize, NULL, 0, NULL, NULL);
+}
+- (cl_int)enqueueNDRangeKernel:(RRCLKernel *)aKernel globalWorkSize:(size_t)globalWorkSize localWorkSize:(size_t)localWorkSize
+{
+	return clEnqueueNDRangeKernel(commandQueue, [aKernel kernel], 1, NULL, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
 }
 
 - (void)dealloc
