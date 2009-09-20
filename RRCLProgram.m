@@ -27,6 +27,51 @@
 
 @implementation RRCLProgram
 
+// Maintain a strong-to-strong map table for translating cl_program opaques to
+// their corresponding RRCLProgram wrapper instance. Class method
+// -wrapperForProgram:program applies the translation; takes a cl_program,
+// answers an RRCLProgram instance by creating a wrapper if necessary.
+
+static NSMapTable *programs;
+static void SetWrapperForProgram(RRCLProgram *wrapper, cl_program program)
+{
+	if (programs == nil)
+	{
+		programs = [[NSMapTable alloc] initWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory capacity:0];
+	}
+	[programs setObject:wrapper forKey:(id)program];
+}
+static void RemoveWrapperForProgram(cl_program program)
+{
+	[programs removeObjectForKey:(id)program];
+	if ([programs count] == 0)
+	{
+		[programs release];
+		programs = nil;
+	}
+}
+
+- (id)initWithProgram:(cl_program)otherProgram
+{
+	self = [super init];
+	if (self)
+	{
+		clRetainProgram(program = otherProgram);
+		SetWrapperForProgram(self, program);
+	}
+	return self;
+}
+
++ (RRCLProgram *)wrapperForProgram:(cl_program)program
+{
+	RRCLProgram *wrapper;
+	if (programs == nil || (wrapper = [programs objectForKey:(id)program]) == nil)
+	{
+		wrapper = [[[self class] alloc] initWithProgram:program];
+	}
+	return wrapper;
+}
+
 - (id)initWithSource:(NSString *)source inContext:(cl_context)aContext
 {
 	self = [super init];
@@ -40,24 +85,27 @@
 			[self release];
 			self = nil;
 		}
+		SetWrapperForProgram(self, program);
 	}
 	return self;
 }
 
 - (void)dealloc
 {
+	RemoveWrapperForProgram(program);
 	clReleaseProgram(program);
 	[super dealloc];
 }
 - (void)finalize
 {
+	RemoveWrapperForProgram(program);
 	clReleaseProgram(program);
 	[super finalize];
 }
 
-- (void)build
+- (cl_int)build
 {
-	clBuildProgram(program, 0, NULL, "", NULL, NULL);
+	return clBuildProgram(program, 0, NULL, "", NULL, NULL);
 }
 
 //------------------------------------------------------------------------------

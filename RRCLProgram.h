@@ -33,9 +33,13 @@
 	cl_program program;
 }
 
++ (RRCLProgram *)wrapperForProgram:(cl_program)program;
+
 - (id)initWithSource:(NSString *)source inContext:(cl_context)aContext;
 
-- (void)build;
+- (cl_int)build;
+
+//------------------------------------------------------------------------- Info
 
 - (cl_uint)referenceCount;
 	// Returns the program reference count. However, take care because the
