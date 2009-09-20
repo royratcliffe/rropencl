@@ -27,3 +27,4 @@
 #import <RROpenCL/RRCLCommandQueue.h>
 #import <RROpenCL/RRCLProgram.h>
 #import <RROpenCL/RRCLKernel.h>
+#import <RROpenCL/RRCLBuffer.h>

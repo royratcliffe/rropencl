@@ -1,6 +1,7 @@
-// RROpenCL RRCLContext.h
+// RROpenCL RRCLBuffer.h
 //
-// Copyright © 2009, Roy Ratcliffe, Lancaster, United Kingdom
+// Copyright © 2009, Roy Ratcliffe, Pioneering Software, United Kingdom
+// All rights reserved
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,23 +27,16 @@
 
 #import <OpenCL/OpenCL.h>
 
-@class RRCLCommandQueue;
-@class RRCLProgram;
-@class RRCLBuffer;
-
-@interface RRCLContext : NSObject
+@interface RRCLBuffer : NSObject
 {
-	cl_context context;
+	cl_mem mem;
 }
 
-- (id)initWithDeviceIDs:(NSArray *)deviceIDs;
+- (id)initWithContext:(cl_context)aContext flags:(cl_mem_flags)flags size:(size_t)size hostPtr:(void *)hostPtr;
+- (id)initReadWriteWithContext:(cl_context)aContext size:(size_t)size;
+- (id)initWriteOnlyWithContext:(cl_context)aContext size:(size_t)size;
+- (id)initReadOnlyWithContext:(cl_context)aContext size:(size_t)size;
 
-- (RRCLCommandQueue *)commandQueueForDeviceID:(cl_device_id)aDeviceID;
-
-- (RRCLProgram *)programWithSource:(NSString *)source;
-
-- (RRCLBuffer *)readWriteBufferWithSize:(size_t)size;
-- (RRCLBuffer *)writeOnlyBufferWithSize:(size_t)size;
-- (RRCLBuffer *)readOnlyBufferWithSize:(size_t)size;
+- (cl_mem)mem;
 
 @end

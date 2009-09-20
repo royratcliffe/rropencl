@@ -26,6 +26,7 @@
 #import "RRCLDevice.h"
 #import "RRCLCommandQueue.h"
 #import "RRCLProgram.h"
+#import "RRCLBuffer.h"
 
 void RRCLContextNotify(const char *errinfo, const void *private_info, size_t cb, void *user_data);
 
@@ -72,6 +73,19 @@ void RRCLContextNotify(const char *errinfo, const void *private_info, size_t cb,
 - (RRCLProgram *)programWithSource:(NSString *)source
 {
 	return [[[RRCLProgram alloc] initWithSource:source inContext:context] autorelease];
+}
+
+- (RRCLBuffer *)readWriteBufferWithSize:(size_t)size
+{
+	return [[[RRCLBuffer alloc] initReadWriteWithContext:context size:size] autorelease];
+}
+- (RRCLBuffer *)writeOnlyBufferWithSize:(size_t)size
+{
+	return [[[RRCLBuffer alloc] initWriteOnlyWithContext:context size:size] autorelease];
+}
+- (RRCLBuffer *)readOnlyBufferWithSize:(size_t)size
+{
+	return [[[RRCLBuffer alloc] initReadOnlyWithContext:context size:size] autorelease];
 }
 
 - (void)notifyWithErrorInfo:(NSString *)errInfo data:(NSData *)data

@@ -1,6 +1,7 @@
-// RROpenCL RRCLContext.h
+// RROpenCL RRCLBuffer.m
 //
-// Copyright © 2009, Roy Ratcliffe, Lancaster, United Kingdom
+// Copyright © 2009, Roy Ratcliffe, Pioneering Software, United Kingdom
+// All rights reserved
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +23,53 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
+#import "RRCLBuffer.h"
 
-#import <OpenCL/OpenCL.h>
+@implementation RRCLBuffer
 
-@class RRCLCommandQueue;
-@class RRCLProgram;
-@class RRCLBuffer;
-
-@interface RRCLContext : NSObject
+// designated initialiser
+- (id)initWithContext:(cl_context)aContext flags:(cl_mem_flags)flags size:(size_t)size hostPtr:(void *)hostPtr
 {
-	cl_context context;
+	self = [super init];
+	if (self)
+	{
+		cl_int errcode;
+		mem = clCreateBuffer(aContext, flags, size, hostPtr, &errcode);
+		if (NULL == mem)
+		{
+			[self release];
+			self = nil;
+		}
+	}
+	return self;
+}
+- (id)initReadWriteWithContext:(cl_context)aContext size:(size_t)size
+{
+	return [self initWithContext:aContext flags:CL_MEM_READ_WRITE size:size hostPtr:NULL];
+}
+- (id)initWriteOnlyWithContext:(cl_context)aContext size:(size_t)size
+{
+	return [self initWithContext:aContext flags:CL_MEM_WRITE_ONLY size:size hostPtr:NULL];
+}
+- (id)initReadOnlyWithContext:(cl_context)aContext size:(size_t)size
+{
+	return [self initWithContext:aContext flags:CL_MEM_READ_ONLY size:size hostPtr:NULL];
 }
 
-- (id)initWithDeviceIDs:(NSArray *)deviceIDs;
+- (cl_mem)mem
+{
+	return mem;
+}
 
-- (RRCLCommandQueue *)commandQueueForDeviceID:(cl_device_id)aDeviceID;
-
-- (RRCLProgram *)programWithSource:(NSString *)source;
-
-- (RRCLBuffer *)readWriteBufferWithSize:(size_t)size;
-- (RRCLBuffer *)writeOnlyBufferWithSize:(size_t)size;
-- (RRCLBuffer *)readOnlyBufferWithSize:(size_t)size;
+- (void)dealloc
+{
+	clReleaseMemObject(mem);
+	[super dealloc];
+}
+- (void)finalize
+{
+	clReleaseMemObject(mem);
+	[super finalize];
+}
 
 @end
