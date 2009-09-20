@@ -130,7 +130,7 @@
 {
 	return [self stringForBuildInfo:CL_PROGRAM_BUILD_OPTIONS deviceID:deviceID];
 }
-- (NSString *)logForDevice:(cl_device_id)deviceID
+- (NSString *)logForDeviceID:(cl_device_id)deviceID
 {
 	return [self stringForBuildInfo:CL_PROGRAM_BUILD_LOG deviceID:deviceID];
 }
