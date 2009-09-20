@@ -36,6 +36,10 @@
 - (id)initWithSource:(NSString *)source inContext:(cl_context)aContext;
 
 - (void)build;
+- (cl_build_status)statusForDevice:(cl_device_id)deviceID;
+- (NSString *)optionsForDevice:(cl_device_id)deviceID;
+- (NSString *)logForDevice:(cl_device_id)deviceID;
+
 - (RRCLKernel *)kernelWithName:(NSString *)kernelName;
 
 @end
