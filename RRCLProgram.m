@@ -60,6 +60,38 @@
 	clBuildProgram(program, 0, NULL, "", NULL, NULL);
 }
 
+#pragma mark                                                                Info
+
+- (cl_uint)referenceCount
+{
+	cl_uint referenceCount;
+	if (CL_SUCCESS != clGetProgramInfo(program, CL_PROGRAM_REFERENCE_COUNT, sizeof(referenceCount), &referenceCount, NULL))
+	{
+		return 0;
+	}
+	return referenceCount;
+}
+- (cl_context)context
+{
+	cl_context context;
+	if (CL_SUCCESS != clGetProgramInfo(program, CL_PROGRAM_CONTEXT, sizeof(context), &context, NULL))
+	{
+		return NULL;
+	}
+	return context;
+}
+- (cl_uint)numberOfDevices
+{
+	cl_uint numberOfDevices;
+	if (CL_SUCCESS != clGetProgramInfo(program, CL_PROGRAM_NUM_DEVICES, sizeof(numberOfDevices), &numberOfDevices, NULL))
+	{
+		return 0;
+	}
+	return numberOfDevices;
+}
+
+#pragma mark                                                          Build Info
+
 - (cl_build_status)statusForDevice:(cl_device_id)deviceID
 {
 	// Returns the error code if not successful, e.g. returns CL_INVALID_DEVICE

@@ -36,6 +36,18 @@
 - (id)initWithSource:(NSString *)source inContext:(cl_context)aContext;
 
 - (void)build;
+
+- (cl_uint)referenceCount;
+	// Returns the program reference count. However, take care because the
+	// OpenCL 1.0.43 specification warns, "The reference count returned should
+	// be considered immediately stale. It is unsuitable for general use in
+	// applications. This feature is provided for identifying memory leaks." See
+	// p. 95.
+- (cl_context)context;
+- (cl_uint)numberOfDevices;
+
+//------------------------------------------------------------------- Build Info
+
 - (cl_build_status)statusForDevice:(cl_device_id)deviceID;
 - (NSString *)optionsForDevice:(cl_device_id)deviceID;
 - (NSString *)logForDevice:(cl_device_id)deviceID;
