@@ -27,6 +27,7 @@
 #import <OpenCL/OpenCL.h>
 
 @class RRCLBuffer;
+@class RRCLProgram;
 
 @interface RRCLKernel : NSObject
 {
@@ -38,5 +39,13 @@
 - (cl_kernel)kernel;
 
 - (cl_int)setArg:(cl_uint)argIndex toBuffer:(RRCLBuffer *)aBuffer;
+
+- (NSString *)name;
+- (cl_uint)numberOfArgs;
+- (cl_uint)referenceCount;
+- (cl_context)context;
+- (RRCLProgram *)program;
+
+- (size_t)workGroupSizeForDeviceID:(cl_device_id)deviceID;
 
 @end

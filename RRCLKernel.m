@@ -24,6 +24,7 @@
 
 #import "RRCLKernel.h"
 #import "RRCLBuffer.h"
+#import "RRCLProgram.h"
 
 @implementation RRCLKernel
 
@@ -52,6 +53,73 @@
 {
 	cl_mem mem = [aBuffer mem];
 	return clSetKernelArg(kernel, argIndex, sizeof(mem), &mem);
+}
+
+//------------------------------------------------------------------------------
+#pragma mark                                                                Info
+//------------------------------------------------------------------------------
+
+- (NSString *)name
+{
+	size_t size;
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_FUNCTION_NAME, 0, NULL, &size))
+	{
+		return nil;
+	}
+	char info[size];
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_FUNCTION_NAME, size, info, NULL))
+	{
+		return nil;
+	}
+	return [NSString stringWithCString:info encoding:NSASCIIStringEncoding];
+}
+- (cl_uint)numberOfArgs
+{
+	cl_uint numberOfArgs;
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_NUM_ARGS, sizeof(numberOfArgs), &numberOfArgs, NULL))
+	{
+		return 0;
+	}
+	return numberOfArgs;
+}
+- (cl_uint)referenceCount
+{
+	cl_uint referenceCount;
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_REFERENCE_COUNT, sizeof(referenceCount), &referenceCount, NULL))
+	{
+		return 0;
+	}
+	return referenceCount;
+}
+- (cl_context)context
+{
+	cl_context context;
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_CONTEXT, sizeof(context), &context, NULL))
+	{
+		return NULL;
+	}
+	return context;
+}
+- (RRCLProgram *)program
+{
+	cl_program program;
+	if (CL_SUCCESS != clGetKernelInfo(kernel, CL_KERNEL_PROGRAM, sizeof(program), &program, NULL))
+	{
+		return NULL;
+	}
+	return [RRCLProgram wrapperForProgram:program];
+}
+
+#pragma mark                                                     Work Group Info
+
+- (size_t)workGroupSizeForDeviceID:(cl_device_id)deviceID
+{
+	size_t size;
+	if (CL_SUCCESS != clGetKernelWorkGroupInfo(kernel, deviceID, CL_KERNEL_WORK_GROUP_SIZE, sizeof(size), &size, NULL))
+	{
+		return 0;
+	}
+	return size;
 }
 
 - (void)dealloc
