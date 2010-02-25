@@ -30,6 +30,24 @@
 @class RRCLProgram;
 @class RRCLBuffer;
 
+/*!
+ * The RROpenCL framework does not overlay an additional layer of abstraction on
+ * top of OpenCL, but merely to objectify the existing layer in Objective-C
+ * terms.
+ *
+ * The difference is only one of styling and memory management. Both are
+ * practical goals. Styling: because the natural interface to OpenCL is C-based,
+ * and hence arguments do not naturally accept Foundation types such as
+ * NSString, NSArray, etc. Memory management: because C-based objects live
+ * outside the more natural memory management models built into Objective-C,
+ * whether it be retain-release or garbage collected model.
+ *
+ * Wrapping OpenCL objects in Objective-C NSObject-derived classes makes them
+ * accessible to and subject to advanced memory management. In parallel
+ * environments, e.g. using blocks and Grand Central dispatch, putting objects
+ * in view of the garbage collector can remove many implementation
+ * headaches. Hence, the advantage of wrapping.
+ */
 @interface RRCLContext : NSObject
 {
 	cl_context context;
