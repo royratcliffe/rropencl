@@ -32,7 +32,7 @@
 
 /*!
  * The RROpenCL framework does not overlay an additional layer of abstraction on
- * top of OpenCL, but merely to objectify the existing layer in Objective-C
+ * top of OpenCL, but merely objectifies the existing layer in Objective-C
  * terms.
  *
  * The difference is only one of styling and memory management. Both are
@@ -44,7 +44,7 @@
  *
  * Wrapping OpenCL objects in Objective-C NSObject-derived classes makes them
  * accessible to and subject to advanced memory management. In parallel
- * environments, e.g. using blocks and Grand Central dispatch, putting objects
+ * environments, e.g. using blocks and Grand Central Dispatch, putting objects
  * in view of the garbage collector can remove many implementation
  * headaches. Hence, the advantage of wrapping.
  */
