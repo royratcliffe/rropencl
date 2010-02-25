@@ -38,6 +38,7 @@
 - (id)initWithSource:(NSString *)source inContext:(cl_context)aContext;
 
 - (cl_int)build;
+	// Building a program answers the build error code.
 
 //------------------------------------------------------------------------- Info
 

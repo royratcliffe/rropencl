@@ -40,11 +40,15 @@
 
 - (cl_int)setArg:(cl_uint)argIndex toBuffer:(RRCLBuffer *)aBuffer;
 
+//------------------------------------------------------------------------- Info
+
 - (NSString *)name;
 - (cl_uint)numberOfArgs;
 - (cl_uint)referenceCount;
 - (cl_context)context;
 - (RRCLProgram *)program;
+
+//-------------------------------------------------------------- Work Group Info
 
 - (size_t)workGroupSizeForDeviceID:(cl_device_id)deviceID;
 

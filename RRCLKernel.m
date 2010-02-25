@@ -49,6 +49,17 @@
 	return kernel;
 }
 
+- (void)dealloc
+{
+	clReleaseKernel(kernel);
+	[super dealloc];
+}
+- (void)finalize
+{
+	clReleaseKernel(kernel);
+	[super finalize];
+}
+
 - (cl_int)setArg:(cl_uint)argIndex toBuffer:(RRCLBuffer *)aBuffer
 {
 	cl_mem mem = [aBuffer mem];
@@ -110,7 +121,9 @@
 	return [RRCLProgram wrapperForProgram:program];
 }
 
+//------------------------------------------------------------------------------
 #pragma mark                                                     Work Group Info
+//------------------------------------------------------------------------------
 
 - (size_t)workGroupSizeForDeviceID:(cl_device_id)deviceID
 {
@@ -120,17 +133,6 @@
 		return 0;
 	}
 	return size;
-}
-
-- (void)dealloc
-{
-	clReleaseKernel(kernel);
-	[super dealloc];
-}
-- (void)finalize
-{
-	clReleaseKernel(kernel);
-	[super finalize];
 }
 
 @end
